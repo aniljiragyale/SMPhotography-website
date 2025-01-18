@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <style>
+        body {
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio - Satish Molekar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="javascript" href="js/index.js">
+    <style>
+        /* Hero Section Styles */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 80vh; /* Full height for hero section */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hero Image */
+        .hero img {
+            width: 100%;
+            height: 100%; /* Ensure the image covers the full height */
+            object-fit: cover; /* Ensure the image covers the section */
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .hero-content h1, .hero-content h2, .hero-content p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .hero-content h2 {
+            margin-top: 20px;
+        }
+
+        .hero-content p {
+            margin-top: 10px;
+        }
+
+        .booking-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f2a300;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .booking-btn:hover {
+            background-color: #f28c00;
+        }
+
+        /* Footer and contact styles */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .social-media {
+            list-style: none;
+            padding: 0;
+        }
+
+        .social-media li {
+            margin-bottom: 5px;
+        }
+
+        .social-media a {
+            color: #f2a300;
+            text-decoration: none;
+        }
+
+        .social-media a:hover {
+            color: white;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 50px 0;
+            background-color: #f8f8f8;
+        }
+
+        .gallery-container {
+            display: flex;
+            justify-content: flex-start;
+            overflow: hidden; /* Hide overflow for smooth scrolling effect */
+            width: 100%;
+        }
+
+        .gallery-images-wrapper {
+            display: flex;
+            animation: scrollGalleryImages 30s linear infinite; /* Continuous scrolling with slower speed */
+        }
+
+        .gallery-item {
+            width: 250px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-right: 30px; /* Space between items */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px; /* Taller height */
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .gallery-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        /* Animation for Gallery Section Horizontal Scroll */
+        @keyframes scrollGalleryImages {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Scroll to the left */
+            }
+        }
+
+        /* Services Section */
+        .services {
+            background-color: #acccc575;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .service-item {
+            display: inline-block;
+            width: 30%;
+            margin: 20px;
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+        }
+
+        .service-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .service-item p {
+            font-size: 16px;
+        }
+
+        /* Footer Section */
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 20px;
+            background-color: #1b1b1b;
+            color: white;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+        }
+
+        .social-media {
+            list-style: none;
+            padding: 0;
+        }
+
+        .social-media li {
+            margin-bottom: 5px;
+        }
+
+        .social-media a {
+            color: #f2a300;
+            text-decoration: none;
+        }
+
+        .social-media a:hover {
+            color: white;
+        }
+
+    </style>
+</head>
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" width="100" height="100"> <!-- Adjusted logo size -->
+        </div>
+        <div class="contact-info">
+            <h3>SATISH MOLEKAR</h3>
+            <p>
+                📞 Call: +91 95118 35507 <br>
+            </p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    /* Header background and layout */
+    header {
+        background-color: #eceaea10; /* Dark background */
+        color: #fff; /* White text color */
+        padding: 20px 0;
+        position: absolute; /* Keep header fixed at the top */
+        width: 100%;
+        top: 0;
+        z-index: 10;
+        flex-direction: row ;
+    }
+
+    /* Header container */
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        flex-direction: row ;
+    }
+
+    /* Logo styles */
+    .logo img {
+        max-width: 100%; /* Ensure the logo is responsive */
+        height: auto;
+    }
+
+    /* Contact info styles */
+    .contact-info h3 {
+        font-size: 1em; /* Smaller font size for contact info */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+
+    .contact-info p {
+        font-size: 0.8em; /* Smaller font size for contact info */
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .contact-info p span {
+        display: block; /* Display contact info in separate lines */
+        margin-bottom: 5px;
+    }
+
+    /* Navigation styling */
+    nav ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-right: 30px;
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+
+    /* Links styles */
+    nav a {
+        color: #fff;
+        font-size: 1.2em;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+    }
+
+    /* Link hover effects */
+    nav a:hover {
+        background-color: #ff6347; /* Button-like effect on hover */
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    /* Ensure the header displays like on desktop even on mobile devices */
+    @media screen and (max-width: 1200px) {
+        body {
+            width: 1200px;
+            margin: 0 auto;
+        }
+    }
+
+    /* Responsive design for smaller screens */
+    @media screen and (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .logo img {
+            width: 250px; /* Slightly smaller logo on mobile */
+        }
+
+        nav ul {
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            margin-bottom: 15px;
+        }
+
+        nav ul li:last-child {
+            margin-bottom: 0;
+        }
+    }
+</style>
+
+
+    <title>SM Photography and Films</title>
+    <style>
+        /* Ensure the section covers the full screen */
+        .hero {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Adjust video height */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Center the video horizontally */
+            width: 100%;
+            height: 100%; /* Set video height to 80% of the screen */
+            object-fit: cover; /* Ensures the video covers the section */
+            z-index: -1; /* Keeps the video behind the content */
+        }
+
+        /* Hero content styling */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px; /* Limit the width of the content */
+            background: rgba(117, 126, 134, 0.438); /* Semi-transparent black background for contrast */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); /* Adds shadow around the content */
+        }
+
+        /* Styling for headings and paragraph */
+        .hero-content h1 {
+            font-size: 3em; /* Reduced size for heading */
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px; /* Slightly decreased letter spacing */
+            text-transform: uppercase; /* Uppercase for emphasis */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Text shadow for better contrast */
+            white-space: nowrap; /* Prevents the text from wrapping to a new line */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Makes sure the text doesn't overflow */
+        }
+
+        .hero-content h2 {
+            font-size: 1.8em; /* Smaller subheading */
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Subtle shadow */
+        }
+
+        .hero-content p {
+            font-size: 1.2em; /* Adjusted size for readability */
+            line-height: 1.5;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Button styling */
+        .booking-btn {
+            font-size: 1.3em; /* Slightly smaller button size */
+            padding: 12px 25px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .booking-btn:hover {
+            background-color: #e5533e;
+            transform: scale(1.05); /* Slightly enlarge button */
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 768px) {
+            .hero-video {
+                height: 60%; /* Reduce height for smaller screens */
+            }
+
+            .hero-content h1 {
+                font-size: 2.2em; /* Smaller heading for mobile */
+            }
+
+            .hero-content h2 {
+                font-size: 1.6em; /* Adjust subheading for mobile */
+            }
+
+            .hero-content p {
+                font-size: 1.1em; /* Adjust paragraph size for mobile */
+            }
+
+            .booking-btn {
+                font-size: 1.1em; /* Smaller button for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero" id="home">
+        <video autoplay loop muted playsinline class="hero-video">
+            <source src="images/v1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>SM PHOTOGRAPHY AND FILMS</h1>
+            <h2>Capturing the "Beauty and Beautiful Moments"</h2>
+            <p>Based in Malgaon (Sangli), I specialize in various kinds of photography.</p>
+            <a href="#contact">
+                <button class="booking-btn">Book Your Session</button>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>Photography Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-images-wrapper">
+                <!-- Gallery Items (Will repeat images to create the infinite scroll effect) -->
+                <div class="gallery-item">
+                    <img src="images/1_PRE.jpg" alt="Gallery Image 1">
+                    <div class="gallery-info">
+                        <h3>Pre-Wedding Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_5414.JPG" alt="Gallery Image 2">
+                    <div class="gallery-info">
+                        <h3>Wedding Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/2_M.jpg" alt="Gallery Image 3">
+                    <div class="gallery-info">
+                        <h3>Maternity shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_7130 Engg (3).JPG" alt="Gallery Image 4">
+                    <div class="gallery-info">
+                        <h3>Engagement Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_7303  Candid (8).JPG" alt="Gallery Image 5">
+                    <div class="gallery-info">
+                        <h3>Candid shoot</h3>
+                    </div>
+                </div>
+                <!-- Repeat the same images to ensure continuous scrolling -->
+                <div class="gallery-item">
+                    <img src="images/3_MO.jpg" alt="Gallery Image 6">
+                    <div class="gallery-info">
+                        <h3>Modeling Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/4_drone.jpg" alt="Gallery Image 7">
+                    <div class="gallery-info">
+                        <h3>Drone Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_6962 Engg.JPG" alt="Gallery Image 7">
+                    <div class="gallery-info">
+                        <h3>Engagement Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_5283_ST (5).JPG" alt="Gallery Image 7">
+                    <div class="gallery-info">
+                        <h3> Studio Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/5_bride.jpg" alt="Gallery Image 7">
+                    <div class="gallery-info">
+                        <h3>Bride Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_5206_WED (5).JPG" alt="Gallery Image 8">
+                    <div class="gallery-info">
+                        <h3>Couple Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/6_b.jpg" alt="Gallery Image 9">
+                    <div class="gallery-info">
+                        <h3>Beach Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_7303  Candid (4).JPG" alt="Gallery Image 7">
+                    <div class="gallery-info">
+                        <h3>Outdoor Shoot</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/IMG_8997_WED (5).JPG" alt="Gallery Image 10">
+                    <div class="gallery-info">
+                        <h3>Makeup Shoot</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Services</h2>
+        <div class="service-item">
+            <h3>Wedding shoot</h3>
+            <p>Capturing the essence and joy of your wedding day through candid moments.</p>
+        </div>
+        <div class="service-item">
+            <h3>Pre-wedding shoot</h3>
+            <p>Create romantic and memorable photos that showcase the love and connection between the couple before the big day.</p>
+        </div>
+        <div class="service-item">
+            <h3>Cinematic videography</h3>
+            <p>Producing high-quality, movie-like videos that tell the story of your special moments with creativity and precision.</p>
+        </div>
+        <div class="service-item">
+            <h3>Maternity</h3>
+            <p>Celebrate the beauty of pregnancy with elegant and heartfelt photos that highlight the anticipation and joy of expecting a new life.</p>
+        </div>
+        <div class="service-item">
+            <h3>Outdoor</h3>
+            <p>Enjoy stunning outdoor photography that takes advantage of natural light and scenic backgrounds to create breathtaking images.</p>
+        </div>
+        <div class="service-item">
+            <h3>All types of Events</h3>
+            <p>Comprehensive coverage of events, capturing the key moments, emotions, and atmosphere in a series of dynamic and engaging photos.</p>
+        </div>
+        <div class="service-item">
+            <h3>Candid</h3>
+            <p>Authentic and spontaneous photos that capture genuine emotions and interactions, preserving the true essence of the moment.</p>
+        </div>
+        <div class="service-item">
+            <h3>Modeling</h3>
+            <p>Professional modeling portfolios that highlight your best features and showcase your versatility in a variety of styles and settings.</p>
+        </div>
+        <div class="service-item">
+            <h3>Drone Shoot</h3>
+            <p>Professional drone shots that highlight your best features and showcase your versatility in a variety of styles and settings.</p>
+        </div>
+        <!-- Add more services here -->
+    </section>    
+    
+<!-- Photography Packages Section -->
+<section class="packages" id="packages">
+    <h2>Photography Packages</h2>
+    <div class="package-item">
+        <div class="package" style="background-image: url('path/to/silver-package.jpg');">
+            <div class="overlay">
+                <h1>Silver Package</h1>
+                <p>30,000 RS</p>
+                <ul>
+                    <li>Traditional photographer</li>
+                    <li>Traditional videographer</li>
+                    <li>Video editing</li>
+                    <li>12x36 NT HD 20 pages Photobook album</li>
+                </ul>
+            </div>
+        </div>
+        <div class="package" style="background-image: url('path/to/gold-package.jpg');">
+            <div class="overlay">
+                <h1>Gold Package</h1>
+                <p>50,000 RS</p>
+                <ul>
+                    <li>Traditional Photographer</li>
+                    <li>Traditional Videographer</li>
+                    <li>Candid Photographer</li>
+                    <li>Video Editing with Highlights + Reel</li>
+                    <li>12x36 NT HD 25' Pages Photobook Album </li>
+                </ul>
+            </div>
+        </div>
+        <div class="package" style="background-image: url('path/to/diamond-package.jpg');">
+            <div class="overlay">
+                <h1>Diamond Package</h1>
+                <p>70,000 RS</p>
+                <ul>
+                    <li>Traditional Photographer</li>
+                    <li>Traditional Videographer</li>
+                    <li>Candid Photographer</li>
+                    <li>Cinematic Videographer</li>
+                    <li>Video Editing with Highlights Reel</li>
+                    <li>Unlimited Photos</li>
+                    <li>12x36 NT HD 30' Pages Photobook Album</li>
+                </ul>
+            </div>
+        </div>
+        <div class="package" style="background-image: url('path/to/gold-package.jpg');">
+            <div class="overlay">
+                <h1>Pre-Wedding Package</h1>
+                <p>45,000 RS</p>
+                <ul>
+                    <li>Candid Photography</li>
+                    <li>(25-30 Edite Photo + All RAW Photo)</li>
+                    <li>Cinematic Videography + Drone </li>
+                    <li>( Teaser Video + Reel + Highlight  (4K /Full HD Video) )</li>
+                </ul>
+                <h3>Terms And Conditions</h3>
+                <ul>
+                    <ol>75% Payment in Advance.</ol>
+                    <ol>Transportation and Location charge will be applicable seprately.</ol>
+                    <ol>Stay and Dinner Should be managed by Clients.</ol>
+                </ul>
+            </div>
+        </div>
+        <div class="package" style="background-image: url('path/to/gold-package.jpg');">
+            <div class="overlay">
+                <h1>Maternity Package</h1>
+                <p>10,000 RS</p>
+                <ul>
+                    <li>10000/- (1 day Rate)</li>
+                    <li>Candid Photography</li>
+                    <li>(25-30 Edite Photo + All RAW Soft Copy + Reel)</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Add more packages here if needed -->
+</section>
+</section>
+<!-- Contact Section (Updated) -->
+<!-- Contact Section (Updated) -->
+<section id="contact">
+<h2>Contact Us - Book a Session!</h2>
+<p>For booking a wedding or any other photography services, please fill out the form below:</p>
+
+<!-- Booking Form with Table Layout -->
+<form id="booking-form" action="mailto:smphotography5207@gmail.com, +91 9591585862" method="POST" enctype="text/plain">
+    <fieldset>
+        <table border="0">
+            <tr>
+                <td><label for="first-name">First Name:</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="first-name" name="first-name" placeholder="Enter your first name e.g Jane" required></td>
+            </tr>
+            <tr>
+                <td><label for="last-name">Last Name:</label></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="last-name" name="last-name" placeholder="Enter your Last Name e.g Smith" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+            </tr>
+            <tr>
+                <td><input type="email" id="email" name="email" placeholder="Enter your email" required></td>
+            </tr>
+            <tr>
+                <td><label for="contact-number">Contact Number:</label></td>
+            </tr>
+            <tr>
+                <td><input type="tel" id="contact-number" name="contact-number" placeholder="Enter your phone" required></td>
+            </tr>
+            <tr>
+                <td><label for="event-type">Event Type:</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <section id="contact">
+                        <div class="contact-container">
+                            <h3 class="book-session-title">Book a Session with Us!</h3>
+                            <p class="contact-description">We are excited to work with you! Please fill out the form below, and we’ll get back to you with all the details.</p>
+                    
+                            <!-- Contact Form -->
+                            <form id="contactForm">
+                                <!-- Event Type Selection -->
+                                <div class="form-group">
+                                    <label for="event-type">Select Event Type:</label>
+                                    <select id="event-type" name="event-type" required>
+                                        <option value="" disabled selected>Select Event</option>
+                                        <option value="Wedding Shoot">Wedding Shoot</option>
+                                        <option value="Pre-wedding Shoot">Pre-wedding Shoot</option>
+                                        <option value="Cinematic Videography">Cinematic Videography</option>
+                                        <option value="Maternity">Maternity</option>
+                                        <option value="Outdoor">Outdoor</option>
+                                        <option value="Modeling">Modeling</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="source">Photography Packages</label>
+                                            <select id="source" name="source" required>
+                                                <option value="" disabled selected>Select Packages</option>
+                                                <option value="Silver Package">Silver Package</option>
+                                                <option value="Gold Package">Gold Package</option>
+                                                <option value="Daimond Package">Daimond Package</option>
+                                            </select>
+                                </div>
+                                <!-- Event Date -->
+                                <div class="form-group">
+                                    <label for="event-date">Event Date:</label>
+                                    <input type="date" id="event-date" name="event-date" required>
+                                </div>
+                    
+                                <!-- Venue/Location -->
+                                <div class="form-group">
+                                    <label for="venue">Venue / Location:</label>
+                                    <input type="text" id="venue" name="venue" placeholder="Enter your event venue" required>
+                                </div>
+                    
+                                <!-- Detailed Schedule -->
+                                <div class="form-group">
+                                    <label for="details">Detailed Schedule of Event with Time:</label>
+                                    <textarea id="details" name="details" placeholder="Enter your details for a customized package" maxlength="5000" required></textarea>
+                                </div>
+                    
+                                <!-- Source -->
+                                <div class="form-group">
+                                    <label for="source">How did you hear about us?</label>
+                                            <select id="source" name="source" required>
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="Google">Google</option>
+                                                <option value="Facebook">Facebook</option>
+                                                <option value="Instagram">Instagram</option>
+                                                <option value="Friend">Friend</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                </div>
+
+                            </form>
+                        </div>
+                    </section> 
+        </table>                        
+        <!-- Book Button -->
+        <div style="text-align:center; margin-top:20px;">
+            <button type="submit" class="booking-btn">Book Your Session</button>
+        </div>
+    </fieldset>
+</form>
+</section>
+
+    <!-- Footer Section -->
+    <section class="footer-container">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>Your trusted photographer with experience in capturing weddings, events, and candid moments.
+                We specialize in creating timeless memories that you'll cherish forever.
+                With a passion for storytelling through the lens, we ensure every shot captures the essence of your special day.</p>
+        </div>
+  <title>Contact Info with Location</title>
+  <style>
+    .footer-section {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #161616;
+    }
+
+    .footer-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 10px;
+    }
+
+    .location-icon {
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="footer-section">
+    <h3>Contact Info</h3>
+    <p>For inquiries or bookings, you can reach us at:</p>
+    <ul>
+      <li>Email: smphotography5207@gmail.com</li>
+      <li>Phone: +91 95118 35507
+      <li>Studio Location: </li>
+        <a href="https://maps.app.goo.gl/AwgoQrcp92duJkoT6?g_st=com.google.maps.preview.copy" target="_blank">
+          <img src="images/location 1.png" alt="Location" class="location-icon" width="40" height="40">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <head>
+                <!-- Add Font Awesome CDN -->
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+            </head>
+            
+            <ul class="social-media">
+                <li><a href="https://www.instagram.com/sm_photography_official__/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://www.facebook.com/share/1FDbovcGCA/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="https://youtube.com/@sm_photography_film?si=BIsugneNWNiG_bDn" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+            </ul>            
+        </div>
+    </section>
+    <script src="js/index.js"></script>
+</body>
+</html>
